@@ -66,8 +66,7 @@ operands.forEach((op) => {
         }
 
         if(calculation.hasPressedEquals) {
-            calculation.operandOne = null;
-            calculation.operator = "";
+            reset();
             calculation.hasPressedEquals = false;
         }
 
@@ -91,7 +90,7 @@ operators.forEach((op) => {
         else {
             calculation.operandTwo = parseFloat(displayValue);
             let result = operate(calculation.operator, calculation.operandOne, calculation.operandTwo);
-            if(result == Infinity) {
+            if(result == Infinity || isNaN(result)) {
                 display.textContent = "error";
                 reset();
             } else if(getNumberOfDigits(result) > 19) {
@@ -116,8 +115,7 @@ equals.addEventListener('click', () => {
     if(!calculation.operator) return;
     calculation.operandTwo = parseFloat(displayValue);
     let result = operate(calculation.operator, calculation.operandOne, calculation.operandTwo);
-
-    if(result === Infinity) {
+    if(result === Infinity || isNaN(result)) {
         display.textContent = "error";
         reset();
     } else if(getNumberOfDigits(result) > 19) {
