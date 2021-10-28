@@ -60,18 +60,16 @@ operands.forEach((op) => {
             return;
         }
 
-        displayValue = displayValue + op.getAttribute("value");
-        display.textContent = displayValue;
+        if(displayValue.length < 19) {
+            displayValue = displayValue + op.getAttribute("value");
+            display.textContent = displayValue;
+        }
 
         if(calculation.hasPressedEquals) {
             calculation.operandOne = null;
             calculation.operator = "";
             calculation.hasPressedEquals = false;
         }
-
-
-        //get input smaller than screen size don't forget
-
 
     });
 })
@@ -96,7 +94,11 @@ operators.forEach((op) => {
             if(result == Infinity) {
                 display.textContent = "error";
                 reset();
-            } else {
+            } else if(getNumberOfDigits(result) > 19) {
+                display.textContent = "too big to display";
+                reset();
+            }
+            else {
                 calculation.operandOne = result;
                 display.textContent = calculation.operandOne;
                 calculation.operator = op.getAttribute("value");
@@ -114,10 +116,15 @@ equals.addEventListener('click', () => {
     if(!calculation.operator) return;
     calculation.operandTwo = parseFloat(displayValue);
     let result = operate(calculation.operator, calculation.operandOne, calculation.operandTwo);
+
     if(result === Infinity) {
         display.textContent = "error";
         reset();
-    } else {
+    } else if(getNumberOfDigits(result) > 19) {
+        display.textContent = "too big to display";
+        reset();
+    }
+    else {
         calculation.operandOne = result;
         display.textContent = calculation.operandOne;
         displayValue = "";
@@ -149,3 +156,6 @@ function reset() {
     calculation.operandTwo = null;
 }
 
+function getNumberOfDigits(number) {
+    return number.toString().length;
+}
