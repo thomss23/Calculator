@@ -1,0 +1,52 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(39, 38, 38);
+}
+
+.screen {
+    color: white;
+    margin-left: auto;
+    border:5px solid silver;
+    height:100px;
+    text-align:right;
+    font-size: 60px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.buttons {
+    display:flex;
+    flex-direction: column;
+}   
+
+button{
+    height: 80px;
+    width: 150px;
+    font-size:25px;
+    background-color: silver;
+}
+
+button:hover {
+    background-color: #3e8e41;
+    color: white;
+}
+
+.clear,
+.sign,
+.percent {
+    background-color: teal;
+}
+
+
+.row {
+    display: flex;
+    
+}
+
+.equals {
+   flex-grow: 2;
+}
