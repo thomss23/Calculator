@@ -37,7 +37,7 @@ button:hover {
 
 .clear,
 .sign,
-.percent {
+.backspace {
     background-color: teal;
 }
 
@@ -45,6 +45,9 @@ button:hover {
 .row {
     display: flex;
     
+}
+.clear {
+    flex-grow : 3;
 }
 
 .equals {
