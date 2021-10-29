@@ -61,7 +61,7 @@ window.addEventListener('keydown', function(e){
 operands.forEach((op) => {
     op.addEventListener('click', () => {
 
-        if(!displayValue && op.getAttribute("value") == 0) {
+        if(displayValue == "0" && op.getAttribute("value") != ".") {
             return;
         }
 
