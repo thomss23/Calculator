@@ -55,3 +55,25 @@ button:hover {
 .equals {
    flex-grow: 2;
 }
+
+@media screen and (max-width: 800px) {
+    .screen {
+        color: white;
+        margin-left: auto;
+        border:5px solid silver;
+        height:100px;
+        text-align:right;
+        font-size: 60px;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+    
+    button{
+        height: 80px;
+        width: 90px;
+        font-size:25px;
+        background-color: silver;
+    }
+
+}
