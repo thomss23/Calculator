@@ -92,7 +92,7 @@ operators.forEach((op) => {
 
     op.addEventListener('click', ()=> {
 
-        // if(!displayValue) displayValue = "0";
+        if(!displayValue) displayValue = "0";
 
         if(!calculation.operator && !calculation.hasPressedEquals) {
             calculation.operandOne = parseFloat(displayValue);
