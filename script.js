@@ -66,8 +66,18 @@ operands.forEach((op) => {
         }
 
         if(displayValue.length < 19) {
-            displayValue = displayValue + op.getAttribute("value");
-            display.textContent = displayValue;
+            if(op.getAttribute("value") == "." && !displayValue) {
+                displayValue = "0.";
+            } else {
+                displayValue = displayValue + op.getAttribute("value");
+            }
+
+            if(calculation.operator == "-" && !displayValue.startsWith("-")) {
+                display.textContent = "-" + displayValue;
+            } else {
+                display.textContent = displayValue;
+            }
+
         }
 
         if(calculation.hasPressedEquals) {
@@ -82,7 +92,7 @@ operators.forEach((op) => {
 
     op.addEventListener('click', ()=> {
 
-        if(!displayValue) displayValue = "0";
+        // if(!displayValue) displayValue = "0";
 
         if(!calculation.operator && !calculation.hasPressedEquals) {
             calculation.operandOne = parseFloat(displayValue);
@@ -95,7 +105,7 @@ operators.forEach((op) => {
         else {
             calculation.operandTwo = parseFloat(displayValue);
             let result = operate(calculation.operator, calculation.operandOne, calculation.operandTwo);
-            if(result == Infinity || isNaN(result)) {
+            if(result == Infinity || isNaN(result) || result == -Infinity) {
                 display.textContent = "error";
                 reset();
             } else if(getNumberOfDigits(result) > 19) {
@@ -120,7 +130,7 @@ equals.addEventListener('click', () => {
     if(!calculation.operator) return;
     calculation.operandTwo = parseFloat(displayValue);
     let result = operate(calculation.operator, calculation.operandOne, calculation.operandTwo);
-    if(result === Infinity || isNaN(result)) {
+    if(result === Infinity || isNaN(result) || result == -Infinity) {
         display.textContent = "error";
         reset();
     } else if(getNumberOfDigits(result) > 19) {
